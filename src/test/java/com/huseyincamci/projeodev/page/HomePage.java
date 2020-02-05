@@ -21,7 +21,7 @@ public class HomePage extends BasePageUtil {
     }
 
     public void validateHomePage() {
-        Assert.assertEquals(getTitle(), "n11.com - Alışverişin Uğurlu Adresi");
+        Assert.assertEquals("n11.com - Alışverişin Uğurlu Adresi", getTitle());
     }
 
 
