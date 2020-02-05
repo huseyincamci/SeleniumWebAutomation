@@ -12,34 +12,31 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class DriverFactory {
 
-    /*public static WebDriver getDriver() {
+    public static WebDriver getDriver() {
 
         String browser = System.getenv("BROWSER");
         browser = (browser == null) ? "CHROME" : browser;
 
-        switch (browser) {
-            case "IE":
-                InternetExplorerDriverManager.getInstance(DriverManagerType.IEXPLORER).setup();
-                return new InternetExplorerDriver();
-            case "FIREFOX":
-                FirefoxDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
-                return new FirefoxDriver();
-            case "CHROME":
-            default:
-                ChromeDriverManager.getInstance(DriverManagerType.CHROME).arch32();
-                ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup();
-
-                ChromeOptions options = new ChromeOptions();
-                if ("Y".equalsIgnoreCase(System.getenv("HEADLESS"))) {
-                    options.addArguments("--headless");
-                    options.addArguments("--disable-gpu");
-                    options.addArguments("disable-popup-blocking");
-                    options.addArguments("ignore-certificate-errors");
-                    options.addArguments("disable-translate");
-                    options.addArguments("--disable-notifications");
-                }
-
-                return new ChromeDriver(options);
+        if ("IE".equals(browser)) {
+            InternetExplorerDriverManager.getInstance(DriverManagerType.IEXPLORER).setup();
+            return new InternetExplorerDriver();
+        } else if ("FIREFOX".equals(browser)) {
+            FirefoxDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
+            return new FirefoxDriver();
         }
-    }*/
+        ChromeDriverManager.getInstance(DriverManagerType.CHROME).arch32();
+        ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup();
+
+        ChromeOptions options = new ChromeOptions();
+        if ("Y".equalsIgnoreCase(System.getenv("HEADLESS"))) {
+            options.addArguments("--headless");
+            options.addArguments("--disable-gpu");
+            options.addArguments("disable-popup-blocking");
+            options.addArguments("ignore-certificate-errors");
+            options.addArguments("disable-translate");
+            options.addArguments("--disable-notifications");
+        }
+
+        return new ChromeDriver(options);
+    }
 }
