@@ -1,5 +1,6 @@
 package com.huseyincamci.projeodev.tests;
 
+import com.huseyincamci.projeodev.driver.DriverFactory;
 import com.huseyincamci.projeodev.driver.LocalDriverFactory;
 import org.junit.After;
 import org.junit.Before;
@@ -14,9 +15,9 @@ public class BaseTest {
 
     @Before
     public void initializeDriver() {
-        driver = LocalDriverFactory.getDriver();
+        driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(APP_URL);
     }
 
