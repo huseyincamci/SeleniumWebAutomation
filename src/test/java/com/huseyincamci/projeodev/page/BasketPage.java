@@ -1,6 +1,7 @@
 package com.huseyincamci.projeodev.page;
 
 import com.huseyincamci.projeodev.util.BasePageUtil;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,8 @@ public class BasketPage extends BasePageUtil {
     protected final By removeBtn = By.className("svgIcon_trash");
     protected final By title = By.xpath("/html/body/div[1]/div[2]/div/div[1]/div[1]/h2");
 
+    protected String priceInProductPage;
+
     public BasketPage(WebDriver driver) {
         super(driver);
     }
@@ -21,8 +24,9 @@ public class BasketPage extends BasePageUtil {
         return getText(productPrice).split(" ")[0];
     }
 
-    public void addQuantity() {
+    public BasketPage addQuantity() {
         clickElement(spinnerUp);
+        return this;
     }
 
     public String getProductQuantity() {
@@ -32,7 +36,23 @@ public class BasketPage extends BasePageUtil {
 
     public BasketPage removeProduct() {
         clickElement(removeBtn);
-        return new BasketPage(driver);
+        return this;
+    }
+
+    public BasketPage validateProductPrice() {
+        Assert.assertEquals(priceInProductPage, getProductPrice());
+        return this;
+    }
+
+    public BasketPage validateQuantity(){
+
+        int quantity = Integer.parseInt(this.getProductQuantity());
+        Assert.assertEquals(2, quantity);
+        return this;
+    }
+
+    public void validateEmptyBasket() {
+        Assert.assertEquals("Sepetiniz Boş", this.getEmptyText());
     }
 
     public String getEmptyText() {

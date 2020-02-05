@@ -1,6 +1,7 @@
 package com.huseyincamci.projeodev.page;
 
 import com.huseyincamci.projeodev.util.BasePageUtil;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,25 +13,20 @@ import java.util.List;
 import java.util.Random;
 
 public class SearchProductPage extends BasePageUtil {
-
-    protected final By searchBox = By.id("searchData");
-    protected final By searchBtn = By.className("searchBtn");
     protected final By page2 = By.xpath("/html/body/div[1]/div[2]/div/div/div[2]/div[4]/a[2]");
 
     public SearchProductPage(WebDriver driver) {
         super(driver);
     }
 
-
-    public SearchProductPage search(String productName) {
-        setText(searchBox, productName);
-        clickElement(searchBtn);
+    public SearchProductPage goSecondPage() {
+        clickElement(page2);
         return new SearchProductPage(driver);
     }
 
-    public SearchProductPage getSecondPage() {
-        clickElement(page2);
-        return new SearchProductPage(driver);
+
+    public void validateCurrentPage(){
+        Assert.assertEquals("2", currentPage());
     }
 
     public String currentPage() {
