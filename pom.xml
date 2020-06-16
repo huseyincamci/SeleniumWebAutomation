@@ -11,7 +11,7 @@
     <properties>
         <selenium.version>3.8.0</selenium.version>
         <junit.version>4.12</junit.version>
-        <guava.version>24.0-jre</guava.version>
+        <guava.version>24.1.1-jre</guava.version>
         <cucumber.version>2.4.0</cucumber.version>
         <commons.io.version>2.6</commons.io.version>
         <webdriver.manager.version>3.3.0</webdriver.manager.version>
